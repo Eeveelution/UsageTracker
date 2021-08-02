@@ -32,17 +32,16 @@ while (true) {
 
         if (process.SecondsTotal % 60 == 0) {
             string secondsFile = "0";
-            string processFilename = $"processes/{process.ProcessToTrack}";
+            string processFilename = $"processInfo/{process.ProcessToTrack}";
 
             if (File.Exists(processFilename))
                 secondsFile = File.ReadAllText(processFilename);
 
-            int seconds = int.Parse(secondsFile);
-            seconds += process.SecondsTracked;
 
+            process.SecondsTotal   = +process.SecondsTracked;
             process.SecondsTracked = 0;
 
-            File.WriteAllText(processFilename, seconds.ToString());
+            process.Save();
         }
 
         if (runningProcesses.Any(p => p.ProcessName == process.ProcessToTrack)) {
