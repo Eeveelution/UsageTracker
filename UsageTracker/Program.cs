@@ -4,10 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
-using UsageTracker;
 using UsageTracker.Common;
-
-Platform.Initialize();
 
 List<TrackedProcess> trackedProcesses = new();
 
@@ -39,7 +36,6 @@ while (true) {
 
             if (File.Exists(processFilename))
                 secondsFile = File.ReadAllText(processFilename);
-
 
             process.SecondsTotal   = +process.SecondsTracked;
             process.SecondsTracked = 0;

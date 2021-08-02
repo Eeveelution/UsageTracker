@@ -1,10 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <OutputType>WinExe</OutputType>
+        <OutputType>Exe</OutputType>
         <TargetFramework>net5.0</TargetFramework>
-        <LangVersion>default</LangVersion>
     </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Alba.CsConsoleFormat" Version="1.0.0" />
+    </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\UsageTracker.Common\UsageTracker.Common.csproj" />
