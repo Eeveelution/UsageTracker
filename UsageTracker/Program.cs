@@ -4,7 +4,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using UsageTracker;
 using UsageTracker.Common;
+
+Platform.Initialize();
 
 List<TrackedProcess> trackedProcesses = new();
 
