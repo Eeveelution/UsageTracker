@@ -35,7 +35,7 @@ namespace UsageTracker.Ctl {
                     processes.OrderByDescending(p => p.SecondsTotal).Select(item => new[] {
                         new Cell($"{item.Alias}"),
                         new Cell($"{item.ProcessToTrack}"),
-                        new Cell($"{((double)item.SecondsTotal / 60.0) / 60.0}")
+                        new Cell($"{Math.Round(((double)item.SecondsTotal / 60.0) / 60.0, 2)}")
                     })
                 }
             }

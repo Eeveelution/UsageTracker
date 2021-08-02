@@ -37,7 +37,7 @@ while (true) {
             if (File.Exists(processFilename))
                 secondsFile = File.ReadAllText(processFilename);
 
-            process.SecondsTotal   = +process.SecondsTracked;
+            process.SecondsTotal   += process.SecondsTracked;
             process.SecondsTracked = 0;
 
             process.Save();
@@ -47,8 +47,8 @@ while (true) {
             isRunning = true;
             process.IsRunning = true;
 
-            process.SecondsTotal   += 1;
             process.SecondsTracked += 1;
+            process.SecondsTotal += 1;
         }
 
         if (!isRunning) {
