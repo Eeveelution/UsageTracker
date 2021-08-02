@@ -31,11 +31,7 @@ while (true) {
         bool isRunning = false;
 
         if (process.SecondsTotal % 60 == 0) {
-            string secondsFile = "0";
             string processFilename = $"processInfo/{process.ProcessToTrack}";
-
-            if (File.Exists(processFilename))
-                secondsFile = File.ReadAllText(processFilename);
 
             process.SecondsTotal   += process.SecondsTracked;
             process.SecondsTracked = 0;
