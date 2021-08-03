@@ -8,23 +8,28 @@ using UsageTracker.Common;
 
 List<TrackedProcess> trackedProcesses = new();
 
-//Make sure File exists
-if(!File.Exists("processes"))
-    File.WriteAllText("processes", "");
+void RefreshProcessList() {
+    //Make sure File exists
+    if(!File.Exists("processes"))
+        File.WriteAllText("processes", "");
 
-string[] processes = File.ReadAllLines("processes");
+    string[] processes = File.ReadAllLines("processes");
 
-if(processes.Length == 0)
-    Environment.Exit(-1);
+    if(processes.Length == 0)
+        Environment.Exit(-1);
 
-foreach (string process in processes) {
-    TrackedProcess trackedProcess = TrackedProcess.FromProcessName(process);
+    foreach (string process in processes) {
+        TrackedProcess trackedProcess = TrackedProcess.FromProcessName(process);
 
-    if (trackedProcess != null)
-        trackedProcesses.Add(trackedProcess);
+        if (trackedProcess != null && !trackedProcesses.Any(p => p.ProcessToTrack == process))
+            trackedProcesses.Add(trackedProcess);
+    }
 }
 
+
 while (true) {
+    RefreshProcessList();
+
     List<Process> runningProcesses = Process.GetProcesses().ToList();
 
     foreach (TrackedProcess process in trackedProcesses) {
@@ -50,7 +55,7 @@ while (true) {
         if (!isRunning) {
             process.IsRunning = false;
         }
-
-        Thread.Sleep(1000);
     }
+
+    Thread.Sleep(1000);
 }
