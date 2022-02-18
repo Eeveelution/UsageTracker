@@ -28,7 +28,7 @@ ConsoleHelper.DrawProcessInformation(processes);
 
 ReadCommand:
 
-Console.WriteLine("\nAvailabnle Commands:");
+Console.WriteLine("\nAvailable Commands:");
 Console.WriteLine("add // remove // proclist // refresh");
 
 string command = Console.ReadLine();
